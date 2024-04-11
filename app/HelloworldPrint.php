@@ -2,10 +2,6 @@
 
 namespace App;
 
-use Mike42\Escpos\PrintConnectors\FilePrintConnector;
-use Mike42\Escpos\PrintBuffers\ImagePrintBuffer;
-use Mike42\Escpos\Printer;
-
 class HelloworldPrint extends ReceiptPrint
 {
 
