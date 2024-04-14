@@ -8,13 +8,12 @@ use Mike42\Escpos\Printer;
 
 class ReceiptPrint
 {
-
   protected Printer $printer;
   protected ImagePrintBuffer $buffer;
 
-  public function __construct()
+  public function __construct(string $device = "/dev/usb/lp0")
   {
-    $this->printer = new Printer($this->getConnector('/dev/usb/lp0'));
+    $this->printer = new Printer($this->getConnector($device));
     $this->buffer = new ImagePrintBuffer();
     $this->setFont();
 

@@ -1,8 +1,9 @@
 <?php
+require_once __DIR__ . '/vendor/autoload.php';
 
-namespace App;
+use App\ReceiptPrint;
 
-class HelloworldPrint extends ReceiptPrint
+class HelloWorldPrint extends ReceiptPrint
 {
 
   protected function build()
@@ -16,3 +17,6 @@ class HelloworldPrint extends ReceiptPrint
     $this->close();
   }
 }
+
+
+new HelloWorldPrint();
