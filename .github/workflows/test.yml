@@ -1,0 +1,17 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker/login-action@v2
+
+      - run : docker composer run --rm php composer install
+      - run: docker compose run --rm php php test.php
