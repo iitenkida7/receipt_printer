@@ -12,5 +12,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - run : docker compose run --rm php composer install
+      - run: docker compose run --rm php composer install
       - run: make test
