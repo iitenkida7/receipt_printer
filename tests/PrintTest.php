@@ -1,11 +1,12 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
+
+namespace Tests;
 
 use App\ReceiptPrint;
+use PHPUnit\Framework\TestCase;
 
 class HelloWorldPrint extends ReceiptPrint
 {
-
   protected function build()
   {
     $this->center();
@@ -18,12 +19,11 @@ class HelloWorldPrint extends ReceiptPrint
   }
 }
 
-new HelloWorldPrint("/tmp/test.out");
-
-if (md5("/tmp/test.out") === "23fabcdb7c3bdc3238b410fb8e157c0c") {
-  echo "Test passed\n";
-  exit(0);
-} else {
-  echo "Test failed\n";
-  exit(1);
+class PrintTest extends TestCase
+{
+  public function testPrint()
+  {
+    new HelloWorldPrint("/tmp/test.out");
+    $this->assertEquals("23fabcdb7c3bdc3238b410fb8e157c0c", md5("/tmp/test.out"));
+  }
 }

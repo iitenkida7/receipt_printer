@@ -17,4 +17,4 @@ add-permission:
 	sudo chmod 666 /dev/usb/lp0
 
 test: 
-	docker compose run --rm php php test.php
+	docker compose run --rm php vendor/bin/phpunit tests
