@@ -4,5 +4,4 @@ services:
     build: ./docker/php
     working_dir: /app
     volumes:
-      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
       - .:/app
