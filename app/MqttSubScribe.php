@@ -21,8 +21,8 @@ class MqttSubScribe
   {
     $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
     $dotenv->load();
-    $this->server   = $_ENV['MQTT_SERVER'];
-    $this->port     = $_ENV['MQTT_PORT'];
+    $this->server = $_ENV['MQTT_SERVER'];
+    $this->port = $_ENV['MQTT_PORT'];
     $this->username = $_ENV['MQTT_USERNAME'];
     $this->password = $_ENV['MQTT_PASSWORD'];
     $this->clientId = rand(5, 15);
