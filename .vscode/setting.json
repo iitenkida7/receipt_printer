@@ -1,0 +1,13 @@
+{
+  "intelephense.environment.phpVersion": "8.2",
+  "intelephense.format.enable": false,
+  "emeraldwalk.runonsave": {
+    "autoClearConsole": true,
+    "commands": [
+      {
+        "match": "^.*\\.php$",
+        "cmd": "${workspaceFolder}/pint --config ${workspaceFolder}/pint.json ${file}"
+      }
+    ]
+  }
+}
