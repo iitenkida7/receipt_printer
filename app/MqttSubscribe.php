@@ -6,7 +6,7 @@ use  Dotenv\Dotenv;
 use \PhpMqtt\Client\MqttClient;
 use \PhpMqtt\Client\ConnectionSettings;
 
-class MqttSubScribe
+class MqttSubscribe
 {
   private string $topic = 'php/mqtt';
   private string $server;
