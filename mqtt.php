@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
-use \App\MqttSubscribe;
+use \App\Mqtt;
 
-(new MqttSubscribe)->subscribe();
+(new Mqtt)->subscribe();
