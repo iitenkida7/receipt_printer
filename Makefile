@@ -1,6 +1,6 @@
 
 init:
-	sudo apt install -y php php-mbstring php-imagick fonts-ipaexfont
+	sudo apt install -y php8.3 php8.3-mbstring php8.3-imagick php8.3-dom php8.3-xml fonts-ipaexfont
 	# composer
 	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 	php composer-setup.php
