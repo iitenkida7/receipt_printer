@@ -2,6 +2,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use App\ReceiptPrint;
+use App\Mqtt;
 
 class HelloWorldPrint extends ReceiptPrint
 {
@@ -19,4 +20,5 @@ class HelloWorldPrint extends ReceiptPrint
 }
 
 
-new HelloWorldPrint();
+new HelloWorldPrint('/tmp/print_date');
+(new Mqtt)->publish(base64_encode(file_get_contents('/tmp/print_date')));
