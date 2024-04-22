@@ -3,4 +3,4 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use \App\Mqtt;
 
-(new Mqtt)->subscribe();
+(new Mqtt)->publish("これはテスト。");

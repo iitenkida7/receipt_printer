@@ -6,7 +6,7 @@ use  Dotenv\Dotenv;
 use \PhpMqtt\Client\MqttClient;
 use \PhpMqtt\Client\ConnectionSettings;
 
-class MqttSubScribe
+class Mqtt
 {
   private string $topic = 'php/mqtt';
   private string $server;
@@ -25,7 +25,7 @@ class MqttSubScribe
     $this->port = $_ENV['MQTT_PORT'];
     $this->username = $_ENV['MQTT_USERNAME'];
     $this->password = $_ENV['MQTT_PASSWORD'];
-    $this->clientId = rand(5, 15);
+    $this->clientId = rand(5, 100);
     $this->clean_session = false;
 
     $this->connectionSettings  = (new ConnectionSettings)
@@ -49,7 +49,15 @@ class MqttSubScribe
     $mqtt->disconnect();
   }
 
-  public function receivedPostProcess(string $topic, string $message): void
+  public function publish(string $message): void
+  {
+    $mqtt = new MqttClient($this->server, $this->port, $this->clientId, MqttClient::MQTT_3_1_1);
+    $mqtt->connect($this->connectionSettings, $this->clean_session);
+    $mqtt->publish($this->topic, $message, 0);
+    $mqtt->disconnect();
+  }
+
+  protected function receivedPostProcess(string $topic, string $message): void
   {
     // override this method to process the received message
     printf("Received message on topic [%s]: %s\n", $topic, $message);
