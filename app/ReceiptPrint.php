@@ -34,7 +34,7 @@ class ReceiptPrint
     $this->printer->feed(2);
   }
 
-  protected function text(string $string, int $fontSize = 40): void
+  protected function text(string $string, FontSize $fontSize): void
   {
     $this->setSize($fontSize);
     $this->printer->text($string . "\n");
