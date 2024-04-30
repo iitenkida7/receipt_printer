@@ -55,15 +55,15 @@ class ReceiptPrint
     return  new FilePrintConnector($device);
   }
 
-  protected function setFont(string $fontPath = "/usr/share/fonts/opentype/ipaexfont-gothic/ipaexg.ttf"): void
+  protected function setFont(string $fontPath = "/usr/share/fonts/opentype/ipafont-gothic/ipag.ttf"): void
   {
     $this->buffer->setFont($fontPath);
     $this->printer->setPrintBuffer($this->buffer);
   }
 
-  protected function setSize(int $fontSize = 40): void
+  protected function setSize(FontSize $fontSize): void
   {
-    $this->buffer->setFontSize($fontSize);
+    $this->buffer->setFontSize($fontSize->value);
     $this->printer->setPrintBuffer($this->buffer);
   }
 
