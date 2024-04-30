@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\ReceiptPrint;
+use App\FontSize;
 use PHPUnit\Framework\TestCase;
 
 class HelloWorldPrint extends ReceiptPrint
@@ -11,8 +12,8 @@ class HelloWorldPrint extends ReceiptPrint
   {
     $this->center();
 
-    $this->text("こんにちは！", 40);
-    $this->text("QRコード", 20);
+    $this->text("こんにちは！", FontSize::Large);
+    $this->text("QRコード", FontSize::Small);
     $this->printQrCode("https:/example.com/");
 
     $this->close();
