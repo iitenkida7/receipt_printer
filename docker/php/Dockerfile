@@ -1,6 +1,6 @@
 FROM php:8.2-cli-bullseye
 RUN apt-get update \
-  && apt-get install -y fonts-ipaexfont  imagemagick libmagickwand-dev  libzip-dev zip\
+  && apt-get install -y fonts-ipafont  imagemagick libmagickwand-dev  libzip-dev zip\
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* \
   && pecl install imagick \

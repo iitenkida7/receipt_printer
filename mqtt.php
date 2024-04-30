@@ -8,9 +8,8 @@ class MqttFlow extends Mqtt
 
   protected function receivedPostProcess(string $topic, string $message): void
   {
-    $data = base64_decode($message);
-    file_put_contents('/dev/usb/lp0', $data);
+    file_put_contents('/dev/usb/lp0', base64_decode($message));
   }
 }
 
-(new Mqtt)->subscribe();
+(new MqttFlow)->subscribe();
