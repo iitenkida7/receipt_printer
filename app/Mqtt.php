@@ -11,12 +11,12 @@ use Monolog\Handler\StreamHandler;
 
 class Mqtt
 {
-  public bool $debug = false;
+  public bool $debug = true;
 
   private string $topic = 'php/mqtt';
   private string $server;
   private int $port;
-  private int $clientId;
+  private string $clientId;
   private string $username;
   private string $password;
   private bool $clean_session;
@@ -30,7 +30,7 @@ class Mqtt
     $this->port = $_ENV['MQTT_PORT'];
     $this->username = $_ENV['MQTT_USERNAME'];
     $this->password = $_ENV['MQTT_PASSWORD'];
-    $this->clientId = rand(5, 100);
+    $this->clientId = 'php-mqtt-client-1';
     $this->clean_session = false;
 
     $this->connectionSettings  = (new ConnectionSettings)
@@ -59,9 +59,9 @@ class Mqtt
   {
 
     $logger = $this->debug ? $this->logger() : null;
-    $mqtt = new MqttClient($this->server, $this->port, $this->clientId, MqttClient::MQTT_3_1_1, null,  $logger);
+    $mqtt = new MqttClient($this->server, $this->port, $this->clientId, MqttClient::MQTT_3_1_1, null, $logger);
     $mqtt->connect($this->connectionSettings, $this->clean_session);
-    $mqtt->publish($this->topic, $message,  MqttClient::QOS_AT_MOST_ONCE);
+    $mqtt->publish($this->topic, $message,  MqttClient::QOS_EXACTLY_ONCE);
     $mqtt->disconnect();
   }
 
