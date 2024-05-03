@@ -37,7 +37,20 @@ class ReceiptPrint
   protected function text(string $string, FontSize $fontSize): void
   {
     $this->setSize($fontSize);
-    $this->printer->text($string . "\n");
+
+    $chars = mb_str_split($string);
+    $outs = [];
+    while (count($chars) !== 0) {
+      $outs[] =  array_shift($chars);
+      if ($this->countBytes(implode('', $outs)) === $fontSize->maxLength()) {
+        $this->printer->text(implode('', $outs), $fontSize);
+        $outs = [];
+      }
+    }
+
+    if (count($outs) > 0) {
+      $this->printer->text(implode('', $outs), $fontSize);
+    }
   }
 
   protected function center(): void
@@ -71,5 +84,22 @@ class ReceiptPrint
   {
     $this->printer->feed(3);
     $this->printer->close();
+  }
+
+  private function countBytes($string)
+  {
+    $length = mb_strlen($string, 'UTF-8');
+    $byteCount = 0;
+
+    for ($i = 0; $i < $length; $i++) {
+      $char = mb_substr($string, $i, 1, 'UTF-8');
+      // mb_strwidth が2を返す場合、それは全角文字と見なす
+      if (mb_strwidth($char, 'UTF-8') === 2) {
+        $byteCount += 2;
+      } else {
+        $byteCount += 1;
+      }
+    }
+    return $byteCount;
   }
 }
