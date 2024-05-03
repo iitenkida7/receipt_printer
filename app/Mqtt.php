@@ -13,7 +13,7 @@ class Mqtt
 {
   private  bool $debug = false;
 
-  private string $topic = 'php/mqtt';
+  private string $topic;
   private string $server;
   private int $port;
   private string $clientId;
@@ -31,6 +31,7 @@ class Mqtt
     $this->username = $_ENV['MQTT_USERNAME'];
     $this->password = $_ENV['MQTT_PASSWORD'];
     $this->clientId = $_ENV['MQTT_CLIENT_ID'];
+    $this->topic = $_ENV['MQTT_TOPIC'];
     $this->clean_session = false;
 
     $this->connectionSettings  = (new ConnectionSettings)
