@@ -1,0 +1,15 @@
+[Unit]
+Description=ReciptPrinter script
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+ExecStartPre=/home/pi/receipt_printer/permission.sh
+ExecStart=/home/pi/receipt_printer/resv.sh
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
+
