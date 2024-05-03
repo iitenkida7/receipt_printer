@@ -11,7 +11,7 @@ use Monolog\Handler\StreamHandler;
 
 class Mqtt
 {
-  public bool $debug = true;
+  private  bool $debug = false;
 
   private string $topic = 'php/mqtt';
   private string $server;
@@ -40,6 +40,12 @@ class Mqtt
       ->setConnectTimeout(3)
       ->setUseTls(true)
       ->setTlsSelfSignedAllowed(true);
+  }
+
+  public function debug($mode = true): Self
+  {
+    $this->debug = $mode;
+    return $this;
   }
 
   public function subscribe(): void

@@ -28,5 +28,5 @@ class HelloWorldPrint extends ReceiptPrint
 
 
 new HelloWorldPrint('/tmp/print_date');
-(new Mqtt)->publish(base64_encode(file_get_contents('/tmp/print_date')));
-dd(base64_encode(file_get_contents('/tmp/print_date')));
+(new Mqtt)->debug()->publish(base64_encode(file_get_contents('/tmp/print_date')));
+dd(strlen(base64_encode(file_get_contents('/tmp/print_date'))));
