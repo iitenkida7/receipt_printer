@@ -30,7 +30,7 @@ class Mqtt
     $this->port = $_ENV['MQTT_PORT'];
     $this->username = $_ENV['MQTT_USERNAME'];
     $this->password = $_ENV['MQTT_PASSWORD'];
-    $this->clientId = 'php-mqtt-client-1';
+    $this->clientId = $_ENV['MQTT_CLIENT_ID'];
     $this->clean_session = false;
 
     $this->connectionSettings  = (new ConnectionSettings)
@@ -61,7 +61,8 @@ class Mqtt
     $logger = $this->debug ? $this->logger() : null;
     $mqtt = new MqttClient($this->server, $this->port, $this->clientId, MqttClient::MQTT_3_1_1, null, $logger);
     $mqtt->connect($this->connectionSettings, $this->clean_session);
-    $mqtt->publish($this->topic, $message,  MqttClient::QOS_EXACTLY_ONCE);
+    $mqtt->publish($this->topic, $message, MqttClient::QOS_EXACTLY_ONCE, true);
+    $mqtt->loop(true, true);
     $mqtt->disconnect();
   }
 
