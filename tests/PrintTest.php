@@ -25,6 +25,7 @@ class PrintTest extends TestCase
   public function testPrint()
   {
     new HelloWorldPrint("/tmp/test.out");
-    $this->assertEquals("23fabcdb7c3bdc3238b410fb8e157c0c", md5("/tmp/test.out"));
+    $binary = file_get_contents("/tmp/test.out");
+    $this->assertEquals("b3052f9ad49fb8653b5ccbb8e6a44ed7", md5($binary));
   }
 }
