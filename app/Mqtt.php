@@ -43,7 +43,7 @@ class Mqtt
       ->setTlsSelfSignedAllowed(true);
   }
 
-  public function debug($mode = true): Self
+  public function debug(bool $mode = true): Self
   {
     $this->debug = $mode;
     return $this;
